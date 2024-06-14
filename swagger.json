@@ -1,0 +1,217 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Job Portal REST API's"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8000"
+      },
+      {
+        "url": "10.0.1.240:8000"
+      }
+    ],
+    "paths": {
+      "/employer/employersignup": {
+        "post": {
+          "summary": "Signup",
+          "operationId": "Signup",
+          "tags": ["Employer Signup"],
+          "requestBody": {
+            "description": "Signup Details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "firstName": {
+                      "type": "string",
+                      "example": "john"
+                    },
+                    "lastName": {
+                      "type": "string",
+                      "example": "sinha"
+                    },
+                    "companyName": {
+                      "type": "string",
+                      "example": "cmarix"
+                    },
+                    "workEmail": {
+                      "type": "string",
+                      "example": "raju.poriya@cmaix.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "Pa$$w0rd!"
+                    }
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Employer Register Successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "john"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "sinha"
+                      },
+                      "companyName": {
+                        "type": "string",
+                        "example": "cmarix"
+                      },
+                      "workEmail": {
+                        "type": "string",
+                        "example": "raju.poriya@cmaix.com"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Please Check Your Credentials!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "example": "400"
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Please Check Your Credentials"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/employer/employersignin": {
+        "post": {
+          "summary": "Signin",
+          "operationId": "Signin",
+          "tags": ["Employer Signin"],
+          "requestBody": {
+            "description": "Signin Details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "workEmail": {
+                      "type": "string",
+                      "example": "raju.poriya@cmaix.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "Pa$$w0rd!"
+                    }
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Login successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "properties": {
+                      "workEmail": {
+                        "type": "string",
+                        "example": "raju.poriya@cmaix.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "Pa$$w0rd!"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid Password",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "properties": {
+                      "status": {
+                        "type": "string",
+                        "example": "400"
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Invalid Password"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "customTokenAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "Authorization"
+        }
+      },
+      "responses": {
+        "500": {
+          "description": "There seems to be some problem with server",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "example": "Fail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "401InvalidAccessToken": {
+          "description": "Invalid Access Token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "statusCode": {
+                    "type": "string",
+                    "example": "10001"
+                  },
+                  "message": {
+                    "type": "string",
+                    "example": "Invalid access token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
